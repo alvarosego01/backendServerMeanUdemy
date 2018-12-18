@@ -1,0 +1,20 @@
+{
+  "name": "backendserver",
+  "version": "1.0.0",
+  "description": "Servidor Backend Angular Mean Stack",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Álvaro Segovia",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "greenlock-express": "^2.5.0",
+    "mongoose": "^5.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
