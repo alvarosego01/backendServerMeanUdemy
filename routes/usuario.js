@@ -12,7 +12,7 @@ var mdwAutenticacion = require('../middlewares/autenticacion');
 var app = express();
 
 // para emplear el esquema de registros se importa el modelo de esquema
-var UsuarioSchema = require('../models/usuario');
+var UsuarioSchema = require('../models/usuarioSchema');
 
 
 // rutas
@@ -24,8 +24,14 @@ app.get('/', (req, res, next) => {
     // busca y segundo parametro recibe error y recibe resultado
     // si hay error entonces retorna un estatus de http
     // para pedir solamente algunos campos del resultado, se coloca una coma y se escriben sus nombres de registro
+    // para poder paginar se usa el tipo limit
+    // usa un numero que viene desde o si no pues usa 0
+    var desde = req.query.desde || 0;
+    desde = Number(desde);
 
     UsuarioSchema.find({}, 'nombre email img role')
+        .skip(desde)
+        .limit(5)
         .exec(
         (err, resultado) =>{
             if(err){
@@ -35,11 +41,18 @@ app.get('/', (req, res, next) => {
                     errors: err
                 });
             }
-            // si todo sale bien entonces retorna los resultados con    estatus 200
-            res.status(200).json({
-                ok: true,
-                usuarios: resultado
+            var total;
+            // para tener el total de registros se usa esto
+            UsuarioSchema.count({}, (err, conteo) => {
+                // si todo sale bien entonces retorna los resultados con    estatus 200
+                 res.status(200).json({
+                     ok: true,
+                     usuarios: resultado,
+                     total: conteo
+                 });
             });
+           
+
         });
  
 });

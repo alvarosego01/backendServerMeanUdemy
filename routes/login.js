@@ -13,7 +13,7 @@ var SEED = require('../config/config').SEED;
 var app = express();
 
 // para emplear el esquema de registros se importa el modelo de esquema
-var UsuarioSchema = require('../models/usuario');
+var UsuarioSchema = require('../models/usuarioSchema');
 
 
 app.post('/', (req, res) => {

@@ -30,6 +30,7 @@ exports.verificaToken = function(req,res,next){
           // el next verifica y valida que se siga con los procesos 
         // se manda el usuario quien hace la petición de esta forma, se inyecta en el request.
         req.usuario = decoded.usuario;
+        // req.prueba = decoded;
 
           next();
 
