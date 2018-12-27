@@ -20,11 +20,11 @@ app.get('/:tipo/:img', (req, res, next) => {
     // //Se valida si hay imagen existente en ese path 
     if (fs.existsSync(pathImagen)) {
         // si regresa true entonces todo esta correcto
-        res.sendfile( pathImagen );
+        res.sendFile( pathImagen );
     }
     else{
         var pathNoImagen = path.resolve( __dirname, '../assets/no-img.jpg' );
-        res.sendfile(pathNoImagen);
+        res.sendFile(pathNoImagen);
     }
     
 
